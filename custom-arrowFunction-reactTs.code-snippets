@@ -1,0 +1,23 @@
+{
+	{
+		"scope": "javascriptreact,typescriptreact, javascript, typescript",
+		"Criar componente": {
+		"prefix": "custom-arrowFunction-reactTs",
+		"body": [
+			"interface ${1:Name} {",
+			"",
+			"};",
+			"",
+			"type ${1:Name}Props = {",
+			"",
+			"};",
+			"",
+			"export const ${1:Name} = () => {",
+			"",
+			"	return ${1:Name};",
+			"};",
+		],
+		"description": "Criar um componente React com Typescript"
+		}
+	}
+}

@@ -1,0 +1,24 @@
+{
+	{
+		"scope": "javascriptreact,typescriptreact, javascript, typescript",
+		"Criar componente": {
+		"prefix": "custom-function-reactTs",
+		"body": [
+			"interface ${1:Name} {",
+			"",
+			"};",
+			"",
+			"type ${1:Name}Props = {",
+			"",
+			"};",
+			"",
+			"export default function ${1:Name}() {",
+			"	return (",
+			"		<div></div>"
+			"	)",
+			"};",
+		],
+		"description": "Criar um componente React com Typescript"
+		}
+	}
+}
