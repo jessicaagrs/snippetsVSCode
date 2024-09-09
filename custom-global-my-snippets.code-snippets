@@ -73,11 +73,13 @@
 			"\r",
 			"};\r",
 			"\r",
-			"export const ${1:Name} = () => {\r",
+			"const ${1:Name} = () => {\r",
 			"    return (\r",
 			"        <div></div>\r",
 			"    )\r",
-			"};"
+			"};",
+			"\r",
+			"export default ${1:Name};"
 		],
 		"description": "Cria componente usando arrow funtion e tipagem"
 	},
@@ -127,5 +129,35 @@
 			"}"
 		],
 		"description": "Criaçao de root layout aplicativo Next"
+	},
+	"custom-styled-components": {
+		"prefix": "custom-styled-components",
+		"body": [
+			"export const ${1:NameComponents} = styled.${2:Tag}`\r",
+			"    ${3:Estilo}\r",
+			"`;"
+		],
+		"description": "Criar um estilo via styled components"
+	},
+	"custom-media-querie": {
+		"prefix": "custom-media-querie",
+		"body": [
+			"@media(min-width: ${1:Size}px) and (max-width: ${2:Size}px){\r",
+			"            ${3:Property}\r",
+			"}"
+		],
+		"description": "Criar uma media querie"
+	},
+	"custom-useeffect-react": {
+		"prefix": "custom-useeffect-react",
+		"body": [
+			"useEffect(() => {\r",
+			"        console.log(\"Hello world\");\r",
+			"        return () => {\r",
+			"            console.clear();\r",
+			"        };\r",
+			"    }, []);"
+		],
+		"description": "Criar um use effect em react"
 	}
 }
