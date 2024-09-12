@@ -130,11 +130,21 @@
 		],
 		"description": "Criaçao de root layout aplicativo Next"
 	},
-	"custom-styled-components": {
+	"custom-styled-components-export": {
 		"prefix": "custom-styled-components",
 		"body": [
 			"export const ${1:NameComponents} = styled.${2:Tag}`\r",
 			"    ${3:Estilo}\r",
+			"`;"
+		],
+		"description": "Criar um estilo via styled components"
+	},
+	"custom-styled-components": {
+		"prefix": "custom-styled-components",
+		"body": [
+			"const ${1:NameComponents} = styled.div`\r",
+			"    display: flex;\r",
+			"\r",
 			"`;"
 		],
 		"description": "Criar um estilo via styled components"
