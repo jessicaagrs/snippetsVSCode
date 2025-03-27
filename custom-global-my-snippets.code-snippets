@@ -15,8 +15,8 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"custom-sortarray-javascript": {
-		"prefix": "custom-sortarray-javascript",
+	"jsa-sortarray-javascript": {
+		"prefix": "jsa-sortarray-javascript",
 		"body": [
 			"${1:Array}.sort(function (a, b) {\r",
 			"    return a === b ? 0 : a ${2:MaiorOuMenor} b ? -1 : 1;\r",
@@ -24,13 +24,13 @@
 		],
 		"description": "Ordenar Array, use < ou >"
 	},
-	"custom-expressionifternario-react": {
-		"prefix": "custom-expressionifternario-react",
+	"jsa-expressionifternario-react": {
+		"prefix": "jsa-expressionifternario-react",
 		"body": "{${1:Condition} ? ${2:ResultTrue} : ${3:ResultFalse}}",
 		"description": "Criar if ternário"
 	},
-	"custom-expressionparenteses-react": {
-		"prefix": "custom-expressionparenteses-react",
+	"jsa-expressionparenteses-react": {
+		"prefix": "jsa-expressionparenteses-react",
 		"body": [
 			"{${1:VariableName} ? (\r",
 			"    <${2:ComponentName} />\r",
@@ -42,8 +42,8 @@
 		],
 		"description": "Criar expressão condicional com parenteses"
 	},
-	"custom-createmap-react": {
-		"prefix": "custom-createmap-react",
+	"jsa-createmap-react": {
+		"prefix": "jsa-createmap-react",
 		"body": [
 			"{${1:Array}.map((${2:NameVariable}) => (\r",
 			"    <${4:TagName}>{${2:NameVariable}.${3:PropName}}</${4:TagName}>\r",
@@ -51,8 +51,8 @@
 		],
 		"description": "Criar renderização condicional com Map"
 	},
-	"custom-expression&&-react": {
-		"prefix": "custom-expression&&-react",
+	"jsa-expression&&-react": {
+		"prefix": "jsa-expression&&-react",
 		"body": [
 			"{!${1:NameVariable} && (\r",
 			"    <${2:TagName}>\r",
@@ -62,8 +62,8 @@
 		],
 		"description": "Criar expressão lógica com &&"
 	},
-	"custom-component-arrowfunction": {
-		"prefix": "custom-component-arrowfunction",
+	"jsa-component-arrowfunction": {
+		"prefix": "jsa-component-arrowfunction",
 		"body": [
 			"interface ${1:Name} {\r",
 			"\r",
@@ -73,18 +73,16 @@
 			"\r",
 			"};\r",
 			"\r",
-			"const ${1:Name} = () => {\r",
+			"export const ${1:Name} = () => {\r",
 			"    return (\r",
 			"        <div></div>\r",
 			"    )\r",
-			"};",
-			"\r",
-			"export default ${1:Name};"
+			"};"
 		],
 		"description": "Cria componente usando arrow funtion e tipagem"
 	},
-	"custom-component-function": {
-		"prefix": "custom-component-function",
+	"jsa-component-function": {
+		"prefix": "jsa-component-function",
 		"body": [
 			"interface ${1:Name} {\r",
 			"\r",
@@ -102,8 +100,8 @@
 		],
 		"description": "Cria um componente react com tipagem"
 	},
-	"custom-root-layout": {
-		"prefix": "custom-root-layout",
+	"jsa-root-layout": {
+		"prefix": "jsa-root-layout",
 		"body": [
 			"import type { Metadata } from \"next\";\r",
 			"import { Inter } from \"next/font/google\";\r",
@@ -130,8 +128,8 @@
 		],
 		"description": "Criaçao de root layout aplicativo Next"
 	},
-	"custom-styled-components-export": {
-		"prefix": "custom-styled-components",
+	"jsa-styled-components": {
+		"prefix": "jsa-styled-components",
 		"body": [
 			"export const ${1:NameComponents} = styled.${2:Tag}`\r",
 			"    ${3:Estilo}\r",
@@ -139,18 +137,8 @@
 		],
 		"description": "Criar um estilo via styled components"
 	},
-	"custom-styled-components": {
-		"prefix": "custom-styled-components",
-		"body": [
-			"const ${1:NameComponents} = styled.div`\r",
-			"    display: flex;\r",
-			"\r",
-			"`;"
-		],
-		"description": "Criar um estilo via styled components"
-	},
-	"custom-media-querie": {
-		"prefix": "custom-media-querie",
+	"jsa-media-querie": {
+		"prefix": "jsa-media-querie",
 		"body": [
 			"@media(min-width: ${1:Size}px) and (max-width: ${2:Size}px){\r",
 			"            ${3:Property}\r",
@@ -158,8 +146,8 @@
 		],
 		"description": "Criar uma media querie"
 	},
-	"custom-useeffect-react": {
-		"prefix": "custom-useeffect-react",
+	"jsa-useeffect-react": {
+		"prefix": "jsa-useeffect-react",
 		"body": [
 			"useEffect(() => {\r",
 			"        console.log(\"Hello world\");\r",
@@ -169,5 +157,15 @@
 			"    }, []);"
 		],
 		"description": "Criar um use effect em react"
+	},
+	"jsa-console": {
+		"prefix": "jsa-console",
+		"body": "console.log(${1:Flag}, ${2:Variable});",
+		"description": "Criar um console log"
+	},
+	"jsa-console-color": {
+		"prefix": "jsa-console-color",
+		"body": "console.log(`\\x1b[42m ${${1:variable}} \\x1b[0m`);",
+		"description": "Criar um console log colorido em verde"
 	}
 }
