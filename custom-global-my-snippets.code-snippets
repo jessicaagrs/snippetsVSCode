@@ -167,5 +167,172 @@
 		"prefix": "jsa-console-color",
 		"body": "console.log(`\\x1b[42m ${${1:variable}} \\x1b[0m`);",
 		"description": "Criar um console log colorido em verde"
+	},
+	"jsa-classname-module": {
+		"prefix": "jsa-class-css-module",
+		"body": "className={style.${1:Name}}",
+		"description": "Criar um classname para uma tag html via css module"
+	},
+	"jsa-fetch": {
+		"prefix": "jsa-fetch",
+		"body": [
+			"fetch('${1:url}', {\r",
+			"    method: 'POST',\r",
+			"    headers: {\r",
+			"      'Content-Type': 'application/json',\r",
+			"      Authorization: `Bearer ${2:token}`,\r",
+			"    },\r",
+			"    cache: 'no-cache',\r",
+			"    body: JSON.stringify({\r",
+			"      title: 'foo',\r",
+			"      body: 'bar',\r",
+			"      userId: 1,\r",
+			"    }),\r",
+			"  })\r",
+			"    .then(response => response.json())\r",
+			"    .then(data => console.log(data))\r",
+			"    .catch(error => console.error('Error fetching data:', error))\r",
+			"    .finally(() => console.log('Fetch operation completed'));"
+		],
+		"description": "Realizar uma requisição fetch com tratamento de erro e finalização"
+	},
+	"jsa-fetch-async": {
+		"prefix": "jsa-fetch-async",
+		"body": [
+			"try {\r",
+			"    const response = await fetch('${1:url}', {\r",
+			"      method: 'POST',\r",
+			"      headers: {\r",
+			"        'Content-Type': 'application/json',\r",
+			"        Authorization: `Bearer ${2:token}`,\r",
+			"      },\r",
+			"      cache: 'no-cache',\r",
+			"      body: JSON.stringify({\r",
+			"        title: 'foo',\r",
+			"        body: 'bar',\r",
+			"        userId: 1,\r",
+			"      }),\r",
+			"    });\r",
+			"\r",
+			"    if (!response.ok) {\r",
+			"      throw new Error('Network response was not ok');\r",
+			"    }\r",
+			"\r",
+			"    const data = await response.json();\r",
+			"    console.log(data);\r",
+			"  } catch (error) {\r",
+			"    console.error('Error fetching data:', error);\r",
+			"  } finally {\r",
+			"    console.log('Fetch operation completed');\r",
+			"  }"
+		],
+		"description": "Realizar fetch com uso de async e await"
+	},
+	"jsa-reduce": {
+		"prefix": "jsa-reduce",
+		"body": [
+			"${1:list}.reduce((acc, current) => {\r",
+			"  if (current % 2 === 0) {\r",
+			"    return acc + current;\r",
+			"  }\r",
+			"  return acc;\r",
+			"}, ${2:initialValue});"
+		],
+		"description": "Criar um reduce em javascript, use o nome da lista como prefixo"
+	},
+	"jsa-console-time": {
+		"prefix": "jsa-console-time",
+		"body": [
+			"console.time('${1:message}');\r",
+			"// Código que leva algum tempo para ser executado\r",
+			"console.timeEnd('${1:message}');"
+		],
+		"description": "Medir tempo de execução de um código"
+	},
+	"jsa-axios-create": {
+		"prefix": "jsa-axios-create",
+		"body": [
+			"const api = axios.create({\r",
+			"  baseURL: '${1:url}',\r",
+			"  headers: {\r",
+			"    'Content-Type': 'application/json',\r",
+			"  },\r",
+			"});"
+		],
+		"description": "Criar a configuração básica do Axios"
+	},
+	"jsa-axios-interceptor": {
+		"prefix": "jsa-axios-interceptor",
+		"body": [
+			"api.interceptors.request.use(config => {\r",
+			"  const token = '${1:token}'; // você pode buscar do localStorage ou outro lugar\r",
+			"  if (token) {\r",
+			"    config.headers.Authorization = `Bearer ${token}`;\r",
+			"  }\r",
+			"  return config;\r",
+			"});\r",
+			"\r",
+			"export default api;"
+		],
+		"description": "Interceptor para incluir token automaticamente"
+	},
+	"jsa-axios-get": {
+		"prefix": "jsa-axios-get",
+		"body": [
+			"export const getRequest = async <T>(url: string): Promise<T> => {\r",
+			"  const response = await api.get<T>(url);\r",
+			"  return response.data;\r",
+			"};"
+		],
+		"description": "Realizar get com axios"
+	},
+	"jsa-axios-post": {
+		"prefix": "jsa-axios-post",
+		"body": [
+			"export const postRequest = async <T, U = unknown>(\r",
+			"  url: string,\r",
+			"  data: U\r",
+			"): Promise<T> => {\r",
+			"  const response = await api.post<T>(url, data);\r",
+			"  return response.data;\r",
+			"};"
+		],
+		"description": "Realizar post com axios"
+	},
+	"jsa-axios-put": {
+		"prefix": "jsa-axios-put",
+		"body": [
+			"export const putRequest = async <T, U = unknown>(\r",
+			"  url: string,\r",
+			"  data: U\r",
+			"): Promise<T> => {\r",
+			"  const response = await api.put<T>(url, data);\r",
+			"  return response.data;\r",
+			"};"
+		],
+		"description": "Realizar um put com axios"
+	},
+	"jsa-axios-patch": {
+		"prefix": "jsa-axios-patch",
+		"body": [
+			"export const patchRequest = async <T, U = unknown>(\r",
+			"  url: string,\r",
+			"  data: U\r",
+			"): Promise<T> => {\r",
+			"  const response = await api.patch<T>(url, data);\r",
+			"  return response.data;\r",
+			"};"
+		],
+		"description": "Realizar um patch com axios"
+	},
+	"jsa-axios-delete": {
+		"prefix": "jsa-axios-delete",
+		"body": [
+			"export const deleteRequest = async <T>(url: string): Promise<T> => {\r",
+			"  const response = await api.delete<T>(url);\r",
+			"  return response.data;\r",
+			"};"
+		],
+		"description": "Realizar um delete com axios"
 	}
 }
