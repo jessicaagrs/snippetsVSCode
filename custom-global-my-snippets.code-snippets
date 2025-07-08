@@ -566,5 +566,26 @@
 			"}"
 		],
 		"description": "Criar uma classe simples em typescript"
+	},
+	"jsa-jest": {
+		"prefix": "jsa-jest",
+		"body": [
+			"import { render, screen, fireEvent } from '@testing-library/react';\r",
+			"import ${1:Componente} from '${2:ComponenteCaminho} ';    \r",
+			"\r",
+			"describe('${1:Componente}', () => {\r",
+			"  test('renders correctly', () => {\r",
+			"    render(<${1:Componente} />);\r",
+			"    expect(screen.getByText('foo')).toBeInTheDocument();\r",
+			"  });\r",
+			"\r",
+			"  test('handles button click', () => {\r",
+			"    render(<${1:Componente} />);\r",
+			"    fireEvent.click(screen.getByRole('button'));\r",
+			"    expect(screen.getByText('bar')).toBeInTheDocument();\r",
+			"  });\r",
+			"});"
+		],
+		"description": "Criar uma suite de teste com jest e testing library"
 	}
 }
