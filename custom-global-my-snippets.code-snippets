@@ -102,6 +102,46 @@
 		],
 		"description": "Cria um componente react com tipagem"
 	},
+	"jsa-component-dir-arrowfunction": {
+		"prefix": "jsa-component-dir-arrowfunction",
+		"body": [
+			"interface ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/} {\r",
+			"\r",
+			"};\r",
+			"\r",
+			"type ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/}Props = {\r",
+			"\r",
+			"};\r",
+			"\r",
+			"export const ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/} = () => {\r",
+			"    console.log(${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/}, 'Renderizou');\r",
+			"    return (\r",
+			"        <div></div>\r",
+			"    )\r",
+			"};"
+		],
+		"description": "Cria componente usando arrow funtion e tipagem baseado no nome da pasta"
+	},
+	"jsa-component-dir-function": {
+		"prefix": "jsa-component-dir-function",
+		"body": [
+			"interface ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/} {\r",
+			"\r",
+			"};\r",
+			"\r",
+			"type ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/}Props = {\r",
+			"\r",
+			"};\r",
+			"\r",
+			"export default function ${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/}() {\r",
+			"    console.log(${TM_DIRECTORY/.*[\\\\\\/]([^\\\\\\/]+)$/$1/}, 'Renderizou');\r",
+			"    return (\r",
+			"        <div></div>\r",
+			"    )\r",
+			"};"
+		],
+		"description": "Cria um componente react com tipagem baseado no nome da pasta"
+	},
 	"jsa-root-layout": {
 		"prefix": "jsa-root-layout",
 		"body": [
