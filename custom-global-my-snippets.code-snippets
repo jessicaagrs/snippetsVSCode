@@ -202,7 +202,7 @@
 	},
 	"jsa-console": {
 		"prefix": "jsa-console",
-		"body": "console.log($TM_FILENAME_BASE, ${2:Variable});",
+		"body": "console.log('${1:Term}', ${2:Variable});",
 		"description": "Criar um console log"
 	},
 	"jsa-console-color": {
@@ -609,25 +609,159 @@
 		],
 		"description": "Criar uma classe simples em typescript"
 	},
-	"jsa-jest": {
-		"prefix": "jsa-jest",
+	"jsa-jest-component": {
+		"prefix": "jsa-jest-component",
 		"body": [
-			"import { render, screen, fireEvent } from '@testing-library/react';\r",
-			"import ${1:Componente} from '${2:ComponenteCaminho} ';    \r",
+			"import { render } from \"@testing-library/react\";\r",
 			"\r",
 			"describe('$TM_FILENAME_BASE', () => {\r",
-			"  test('renders correctly', () => {\r",
-			"    render(<${1:Componente} />);\r",
-			"    expect(screen.getByText('foo')).toBeInTheDocument();\r",
-			"  });\r",
+			"  test(\"should ${1:descricao}\", () => {\r",
+			"    const { getByText, container } = render(<div>Qualquer children enviado</div>);\r",
 			"\r",
-			"  test('handles button click', () => {\r",
-			"    render(<${1:Componente} />);\r",
-			"    fireEvent.click(screen.getByRole('button'));\r",
-			"    expect(screen.getByText('bar')).toBeInTheDocument();\r",
+			"    expect(getByText(\"Qualquer children enviado\")).toBeInTheDocument();\r",
+			"    expect(container.querySelector(\".container\")).toBeInTheDocument();\r",
 			"  });\r",
 			"});"
 		],
-		"description": "Criar uma suite de teste com jest e testing library"
+		"description": "Criar uma suite de teste com jest e testing library para um componente React"
+	},
+	"jsa-jest-mock-function": {
+		"prefix": "jsa-jest-mock-function",
+		"body": [
+			"test(\"should ${1:descricao}\", async () => {\r",
+			"    const funcao = jest.fn();\r",
+			"\r",
+			"    const { getByRole } = render(<form onSubmit={funcao}></form>);\r",
+			"\r",
+			"    const input = getByRole(\"textbox\");\r",
+			"    await userEvent.clear(input);\r",
+			"    await userEvent.type(input, \"Um novo curso para estudar\");\r",
+			"\r",
+			"    const button = getByRole(\"button\", { name: /salvar item/i });\r",
+			"    await userEvent.click(button);\r",
+			"\r",
+			"    expect(funcao).toHaveBeenCalled();\r",
+			"  });"
+		],
+		"description": "Criar uma suite de teste com jest e testing library utilizando jest.fn() para mockar uma função"
+	},
+	"jsa-jest-debug": {
+		"prefix": "jsa-jest-debug",
+		"body": [
+			"test(\"should ${1:descricao}\", () => {\r",
+			"    const { container, debug } = render(\r",
+			"      <header>\r",
+			"        <span>teste de exemplo</span>\r",
+			"      </header>,\r",
+			"    );\r",
+			"\r",
+			"    debug();\r",
+			"\r",
+			"    expect(container.firstChild).toHaveClass(\"header\");\r",
+			"  });"
+		],
+		"description": "Criar uma suite de teste com jest e testing library com debug"
+	},
+	"jsa-jest-mock-service": {
+		"prefix": "jsa-jest-mock-service",
+		"body": [
+			"import { ${1:functionService} } from \"${2:path}\";\r",
+			"\r",
+			"jest.mock(\"${2:path}\");\r",
+			"\r",
+			"describe('$TM_FILENAME_BASE', () => {\r",
+			"  test(\"should ${3:descricao}\", async () => {\r",
+			"    ${1:functionService}.mockResolvedValue([]);\r",
+			"\r",
+			"    const { findByText } = render(<Componente />);\r",
+			"\r",
+			"    const count = await findByText(\"0\");\r",
+			"\r",
+			"    expect(count).toBeInTheDocument();\r",
+			"  });\r",
+			"\r",
+			"  test(\"should ${4:descricao}\", async () => {\r",
+			"    ${1:functionService}.mockResolvedValue([\r",
+			"      { id: 1, description: \"Teste 1\", completed: false, createdAt: new Date().toISOString() },\r",
+			"      { id: 2, description: \"Teste 2\", completed: true, createdAt: new Date().toISOString() },\r",
+			"    ]);\r",
+			"\r",
+			"    const { findByText } = render(<Componente />);\r",
+			"\r",
+			"    const count = await findByText(\"2\");\r",
+			"\r",
+			"    expect(count).toBeInTheDocument();\r",
+			"  });\r",
+			"});"
+		],
+		"description": "Criar uma suite de teste com jest e testing library para um serviço que retorna uma lista."
+	},
+	"jsa-jest-parameters": {
+		"prefix": "jsa-jest-parameters",
+		"body": [
+			"test.each([\r",
+			"   { isLoading: true, items: [] },\r",
+			"   { isLoading: false, items: [] },\r",
+			"   {\r",
+			"     isLoading: false,\r",
+			"     items: [\r",
+			"       {\r",
+			"         id: 1,\r",
+			"         description: \"Estudar React\",\r",
+			"         completed: false,\r",
+			"         createdAt: \"2025-08-26T10:00:00.000Z\",\r",
+			"       },\r",
+			"     ],\r",
+			"   },\r",
+			" ])(\"should ${1:descricao}\", ({ isLoading, items }) => {\r",
+			"   const { getByText, queryByText, queryAllByRole } = render(\r",
+			"     <TodoContext.Provider value={{}}>\r",
+			"       <TodoGroup isLoading={isLoading} todos={items} heading=\"Visível o tempo todo\" />\r",
+			"     </TodoContext.Provider>,\r",
+			"   );\r",
+			"\r",
+			"   expect(getByText(\"Visível o tempo todo\")).toBeInTheDocument();\r",
+			"   expect(queryAllByRole(\"listitem\")).toHaveLength(items.length);\r",
+			"\r",
+			"   if (isLoading) {\r",
+			"     expect(getByText(\"Carregando...\")).toBeInTheDocument();\r",
+			"   } else {\r",
+			"     expect(queryByText(\"Carregando...\")).toBeNull();\r",
+			"   }\r",
+			" });"
+		],
+		"description": "Criar uma suite de teste com jest e testing library utilizando parâmetros"
+	},
+	"jsa-jest": {
+		"prefix": "jsa-jest",
+		"body": [
+			"describe(\"${1:title}\", () => { \r",
+			"  test(\"should ${2:descricao}\", () => { \r",
+			"    expect(${3:value}).toBe(${4:expectedValue});\r",
+			"   });\r",
+			" });"
+		],
+		"description": "Criar uma suite de teste com jest"
+	},
+	"jsa-jest-describe": {
+		"prefix": "jsa-jest-describe",
+		"body": "describe('$TM_FILENAME_BASE', () => { ... });",
+		"description": "Criar um bloco describe do jest"
+	},
+	"jsa-jest-it": {
+		"prefix": "jsa-jest-it",
+		"body": "it(\"should ${1:descricao}\", () => { ... });",
+		"description": "Criar um bloco it do jest"
+	},
+    "jsa-jest-test": {
+		"prefix": "jsa-jest-test",
+		"body": "test(\"should ${1:descricao}\", () => { ... });",
+		"description": "Criar um bloco test do jest"
+	},
+	"jsa-jest-expect": {
+		"prefix": "jsa-jest-expect",
+		"body": "expect(${1:value}).toBe(${2:expectedValue});",
+		"description": "Criar uma asserção expect do jest"
 	}
+	
 }
